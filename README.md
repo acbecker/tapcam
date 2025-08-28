@@ -1,0 +1,37 @@
+# Tap Defense Game Scaffold
+
+This repository contains a starter implementation for a tap defense game using TypeScript. To work without external registry access, minimal stub versions of required packages are vendored under `vendor/` and referenced via local `file:` dependencies.
+
+## Game
+
+The `game` directory holds the front end.
+
+```sh
+cd game
+npm install
+npm run build # emits dist/main.js and copies index.html
+```
+
+Open `game/dist/index.html` in a browser to view the placeholder scene.
+
+## Infrastructure
+
+The `infra` directory includes stubbed AWS CDK constructs.
+
+```sh
+cd infra
+npm install
+npm run build
+```
+
+Because all dependencies are local, these commands do not require access to the public npm registry.
+
+## Next Steps
+
+To continue iterating on the game:
+
+- Upload a background image for the scene.
+- Describe the characters, weapons, and bonuses you want.
+- Outline the enemies for each level.
+
+This information will guide future development and deployment work.

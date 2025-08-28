@@ -1,0 +1,11 @@
+{
+  "name": "tap-defense-game",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "tsc && mkdir -p dist && cp public/index.html dist/index.html"
+  },
+  "dependencies": {
+    "phaser": "file:../vendor/phaser"
+  }
+}

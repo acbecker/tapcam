@@ -1,0 +1,15 @@
+{
+  "name": "tap-defense-infra",
+  "version": "0.1.0",
+  "private": true,
+  "bin": {
+    "infra": "bin/infra.ts"
+  },
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {
+    "aws-cdk-lib": "file:../vendor/aws-cdk-lib",
+    "constructs": "file:../vendor/constructs"
+  }
+}
