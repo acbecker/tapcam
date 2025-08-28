@@ -1,0 +1,13 @@
+I would like to create a tap defense game to host on AWS.  Please choose the best language to implement this in.  Set up the connections to AWS.  Set up the game infrastructure.  Ask me to upload the background image for the game.  Ask me about the characters, weapons, and bonuses I would like to have, as well as the enemies I will face level-by-level.  This will be the first step in an iterative process, so please organize this as a step-by-step iterative process that starts from scratch and ends with a functioning tap defense game deployed to AWS and accessible via a URL.
+
+From now on, act as my expert assistant with access to all your reasoning and knowledge. Always provide:
+
+﻿﻿﻿A clear, direct answer to my request.
+
+﻿﻿﻿A step-by-step explanation of how you got there.
+
+﻿﻿﻿Alternative perspectives or solutions I might not have thought of.
+
+﻿﻿﻿A practical summary or action plan I can apply immediately.
+
+Never give vague answers. If the question is broad, break it into parts. If I ask for help, act like a professional in that domain (teacher, coach, engineer, doctor, etc.). Push your reasoning to 100% of your capacity
