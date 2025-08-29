@@ -14,6 +14,11 @@ npm run build # emits dist/main.js and copies index.html
 
 Open `game/dist/index.html` in a browser to view the placeholder scene.
 
+To inspect the prototype **Graveyard Field** layout used for the tower-defense level,
+open `game/public/graveyard-preview.html` in a browser. It renders a 500×500 ft
+graveyard map with the winding path and scattered graves so you can visually
+verify the terrain before importing it into Roblox.
+
 ## Infrastructure
 
 The `infra` directory includes stubbed AWS CDK constructs.

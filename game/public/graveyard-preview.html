@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Graveyard Field Preview</title>
+    <style>body { margin: 0; }</style>
+  </head>
+  <body>
+    <script type="module">
+      import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
+      import { OrbitControls } from 'https://unpkg.com/three@0.160.0/examples/jsm/controls/OrbitControls.js';
+
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+      const renderer = new THREE.WebGLRenderer({ antialias: true });
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      document.body.appendChild(renderer.domElement);
+
+      // lighting
+      const ambient = new THREE.AmbientLight(0x808080);
+      scene.add(ambient);
+      const dir = new THREE.DirectionalLight(0xffffff, 0.5);
+      dir.position.set(0, 200, 100);
+      scene.add(dir);
+
+      // ground plane 500x500
+      const groundGeom = new THREE.PlaneGeometry(500, 500);
+      const groundMat = new THREE.MeshLambertMaterial({ color: 0x225522 });
+      const ground = new THREE.Mesh(groundGeom, groundMat);
+      ground.rotation.x = -Math.PI / 2;
+      scene.add(ground);
+
+      // path segments
+      const pathPoints = [
+        new THREE.Vector3(50, 0, 450),
+        new THREE.Vector3(100, 0, 300),
+        new THREE.Vector3(200, 0, 200),
+        new THREE.Vector3(300, 0, 300),
+        new THREE.Vector3(400, 0, 150),
+        new THREE.Vector3(450, 0, 50)
+      ];
+      const PATH_WIDTH = 20;
+      for (let i = 0; i < pathPoints.length - 1; i++) {
+        const p1 = pathPoints[i];
+        const p2 = pathPoints[i + 1];
+        const diff = p2.clone().sub(p1);
+        const length = diff.length();
+        const geom = new THREE.BoxGeometry(PATH_WIDTH, 1, length);
+        const mat = new THREE.MeshLambertMaterial({ color: 0x555555 });
+        const segment = new THREE.Mesh(geom, mat);
+        const mid = p1.clone().add(diff.multiplyScalar(0.5));
+        segment.position.copy(mid);
+        const angle = Math.atan2(p2.x - p1.x, p2.z - p1.z);
+        segment.rotation.y = angle;
+        scene.add(segment);
+      }
+
+      // graves scattered around edges
+      function addGrave(x, z) {
+        const baseGeom = new THREE.BoxGeometry(4, 1, 2);
+        const baseMat = new THREE.MeshLambertMaterial({ color: 0x646464 });
+        const base = new THREE.Mesh(baseGeom, baseMat);
+        base.position.set(x, 0, z);
+        scene.add(base);
+
+        const headGeom = new THREE.BoxGeometry(2, 3, 1);
+        const headMat = new THREE.MeshLambertMaterial({ color: 0x828282 });
+        const head = new THREE.Mesh(headGeom, headMat);
+        head.position.set(x, 2, z);
+        scene.add(head);
+      }
+
+      for (let i = 0; i < 60; i++) {
+        const x = Math.random() * 460 + 20;
+        const z = Math.random() * 460 + 20;
+        if (x < 80 || x > 420 || z < 80 || z > 420) {
+          addGrave(x, z);
+        }
+      }
+
+      // camera setup with orbit controls
+      camera.position.set(250, 200, 600);
+      const controls = new OrbitControls(camera, renderer.domElement);
+      controls.target.set(250, 0, 250);
+      controls.update();
+
+      function animate() {
+        requestAnimationFrame(animate);
+        renderer.render(scene, camera);
+      }
+      animate();
+    </script>
+  </body>
+</html>
